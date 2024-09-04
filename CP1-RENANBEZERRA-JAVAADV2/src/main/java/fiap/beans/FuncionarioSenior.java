@@ -1,5 +1,5 @@
 
-package br.com.fiap.beans;
+package fiap.beans;
 
 import java.util.Date;
 /*Heranca*/
@@ -23,7 +23,7 @@ public class FuncionarioSenior extends Funcionario {
     }
 
     /*construtor*/
-    public FuncionarioSenior(String nome, Date horasDate, int horas, double valorPagoHoras) {
-        super(nome, horasDate, horas, valorPagoHoras);
+    public FuncionarioSenior(String nome, int horas, double valorPagoHoras) {
+        super(nome, horas, valorPagoHoras);
     }
 }

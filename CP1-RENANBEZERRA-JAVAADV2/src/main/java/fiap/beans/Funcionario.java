@@ -1,20 +1,25 @@
-package br.com.fiap.beans;
+package fiap.beans;
+
+import fiap.anotation.Coluna;
+import fiap.anotation.Tabela;
 
 import java.util.Date;
-
+@Tabela(nome = "TAB_FUNCIONARIO")
 public abstract class Funcionario {
+    @Coluna(nome = "cl_nome", tamanho = 100, obrigatorio = true)
     String nome;
-    Date horasDate;
+    @Coluna(nome = "cl_horas", tamanho = 50, obrigatorio = true)
     int horas;
+    @Coluna(nome = "cl_valorPago", tamanho = 100, obrigatorio = true)
     double valorPagoHoras;
+
+    public Funcionario(String nome, int horas, double valorPagoHoras) {
+    }
 
     public String getNome() {
         return nome;
     }
 
-    public Date getHorasDate() {
-        return horasDate;
-    }
 
     public int getHoras() {
         return horas;
@@ -32,25 +37,19 @@ public abstract class Funcionario {
         this.horas = horas;
     }
 
-    public void setHorasDate(Date horasDate) {
-        this.horasDate = horasDate;
-    }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public Funcionario(String nome, Date horasDate, int horas, double valorPagoHoras) {
-        this.nome = nome;
-        this.horasDate = horasDate;
-        this.horas = horas;
-        this.valorPagoHoras = valorPagoHoras;
-    }
+
     /*Metodos que foram pedidos*/
-    protected double salarioFinal(int horas, double valorPagoHoras){
+    public double salarioFinal(int horas, double valorPagoHoras){
         double salario = horas * valorPagoHoras;
         return salario;
     }
+
+    public abstract double calcularSalario(int horas, double valorPagoHoras);
 
     public String mostrarInformacoes(Funcionario f){
         return f.getNome() + " suas horas trabalhadas é de: "
@@ -59,6 +58,4 @@ public abstract class Funcionario {
     }
 
 
-    // Construtor e getters/setters
-    public abstract double calcularSalario(int horas, double valorPagoHoras);
 }
