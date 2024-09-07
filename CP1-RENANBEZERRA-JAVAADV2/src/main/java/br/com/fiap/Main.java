@@ -1,7 +1,7 @@
-package fiap;
+package br.com.fiap;
 
-import fiap.anotation.Coluna;
-import fiap.beans.Funcionario;
+import br.com.fiap.anotation.Coluna;
+import br.com.fiap.beans.Funcionario;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -14,23 +14,25 @@ public class Main {
                 return 0;
             }
         };
-        //Recuperar o nome da classe atrav�s da API de Reflection
+
+        //Recuperar o nome da classe atraves da API de Reflection
         String nomeClasse = funcionario.getClass().getName();
         System.out.println(nomeClasse);
 
-        //Recuperar os m�todos da classe atrav�s da API de Reflection
+        //Recuperar os m�todos da classe atraves da API de Reflection
         Method[] metodos = funcionario.getClass().getDeclaredMethods();
 
-        //Exibir o nome dos m�todos
+        //Exibir o nome dos metodos
         for (Method m : metodos) {
             System.out.println(m.getName());
         }
 
         Field[] atributos = funcionario.getClass().getDeclaredFields();
-        System.out.println(atributos.getClass().getName());
+        //System.out.println(atributos.getClass().getName());
+
         //Exibir o nome e o tipo dos atributos
         for (Field f : atributos) {
-            System.out.println(f.getName() + " " + f.getType());
+            System.out.println(f.getName() + ": " + f.getType());
             //Recuperar a anotação @Coluna
             Coluna anotacao = f.getAnnotation(Coluna.class);
             //Exibir os parametros da anotação
@@ -39,6 +41,8 @@ public class Main {
             System.out.println("passou aqui");
 
         }
+        System.out.println(funcionario.mostrarInformacoes(funcionario));
+
 
     }
 }

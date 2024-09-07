@@ -1,9 +1,8 @@
-package fiap.beans;
+package br.com.fiap.beans;
 
-import fiap.anotation.Coluna;
-import fiap.anotation.Tabela;
+import br.com.fiap.anotation.Coluna;
+import br.com.fiap.anotation.Tabela;
 
-import java.util.Date;
 @Tabela(nome = "TAB_FUNCIONARIO")
 public abstract class Funcionario {
     @Coluna(nome = "cl_nome", tamanho = 100, obrigatorio = true)
@@ -13,9 +12,18 @@ public abstract class Funcionario {
     @Coluna(nome = "cl_valorPago", tamanho = 100, obrigatorio = true)
     double valorPagoHoras;
 
+
+
+    //public Funcionario(String nome, int horas, double valorPagoHoras) {
+    //}
+    //construtor
     public Funcionario(String nome, int horas, double valorPagoHoras) {
+        this.nome = nome;
+        this.horas = horas;
+        this.valorPagoHoras = valorPagoHoras;
     }
 
+    //getters
     public String getNome() {
         return nome;
     }
@@ -29,6 +37,7 @@ public abstract class Funcionario {
         return valorPagoHoras;
     }
 
+    //setters
     public void setValorPagoHoras(double valorPagoHoras) {
         this.valorPagoHoras = valorPagoHoras;
     }

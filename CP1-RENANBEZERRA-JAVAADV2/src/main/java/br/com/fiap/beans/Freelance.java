@@ -1,10 +1,10 @@
-package fiap.beans;
+package br.com.fiap.beans;
 
-import fiap.anotation.Tabela;
+import br.com.fiap.anotation.Tabela;
 
 import java.util.Date;
 @Tabela(nome = "TAB_FREELANCE")
-public class Freelance extends Funcionario{
+public class Freelance extends Funcionario {
     public Freelance(String nome, Date horasDate, int horas, double valorPagoHoras) {
         super(nome, horas, valorPagoHoras);
     }

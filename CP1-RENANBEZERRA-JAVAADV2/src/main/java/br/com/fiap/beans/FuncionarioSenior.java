@@ -1,7 +1,6 @@
 
-package fiap.beans;
+package br.com.fiap.beans;
 
-import java.util.Date;
 /*Heranca*/
 public class FuncionarioSenior extends Funcionario {
 

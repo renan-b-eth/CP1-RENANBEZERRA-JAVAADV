@@ -1,6 +1,6 @@
-package fiap.dao;
+package br.com.fiap.dao;
 
-import fiap.anotation.Tabela;
+import br.com.fiap.anotation.Tabela;
 
 public class JpaDAO {
 
