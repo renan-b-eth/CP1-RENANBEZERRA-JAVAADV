@@ -3,9 +3,13 @@ package br.com.fiap.dao;
 import br.com.fiap.anotation.Tabela;
 
 public class JpaDAO {
-
-    public void pesquisar(Object obj) {
+    public String pesquisar(Object obj) {
         Tabela anotacao = obj.getClass().getAnnotation(Tabela.class);
-        System.out.println("SELECT * FROM " + anotacao.nome());
+        if (anotacao != null) {
+            return "SELECT * FROM " + anotacao.nome();
+        } else {
+            return "SELECT * FROM TAB_FUNCIONARIO";
+        }
     }
+
 }

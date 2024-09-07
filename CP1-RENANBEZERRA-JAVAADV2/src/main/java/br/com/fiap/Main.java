@@ -1,48 +1,44 @@
 package br.com.fiap;
 
 import br.com.fiap.anotation.Coluna;
+import br.com.fiap.anotation.Tabela;
 import br.com.fiap.beans.Funcionario;
+import br.com.fiap.dao.JpaDAO;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class Main {
     public static void main(String[] args) {
-        Funcionario funcionario = new Funcionario("joao", 10, 10) {
+        Funcionario funcionario1 = new Funcionario("João Silva", 160, 15.0) {
+            @Override
+            public double calcularSalario(int horas, double valorPagoHoras) {
+                return 0;
+            }
+        };
+        Funcionario funcionario2 = new Funcionario("Glenda Delfy", 200, 18.0) {
             @Override
             public double calcularSalario(int horas, double valorPagoHoras) {
                 return 0;
             }
         };
 
-        //Recuperar o nome da classe atraves da API de Reflection
-        String nomeClasse = funcionario.getClass().getName();
-        System.out.println(nomeClasse);
+        // Exibindo informações dos funcionários
+        System.out.println("Informações de João Silva:");
+        funcionario1.mostrarInformacoes(funcionario1);
+        System.out.println("\nSalário final de João Silva: " + funcionario1.salarioFinal(160, 15.0));
 
-        //Recuperar os m�todos da classe atraves da API de Reflection
-        Method[] metodos = funcionario.getClass().getDeclaredMethods();
+        System.out.println("\n\nInformações de Glenda Delfy:");
+        funcionario2.mostrarInformacoes(funcionario2);
+        System.out.println("\nSalário final de Glenda Delfy: " + funcionario2.salarioFinal(200, 18.0));
 
-        //Exibir o nome dos metodos
-        for (Method m : metodos) {
-            System.out.println(m.getName());
-        }
+        // Demonstração do método calcularSalario
+        double salarioJoao = funcionario1.calcularSalario(160, 15.0);
+        double salarioMaria = funcionario2.calcularSalario(200, 18.0);
 
-        Field[] atributos = funcionario.getClass().getDeclaredFields();
-        //System.out.println(atributos.getClass().getName());
+        JpaDAO dao = new JpaDAO();
 
-        //Exibir o nome e o tipo dos atributos
-        for (Field f : atributos) {
-            System.out.println(f.getName() + ": " + f.getType());
-            //Recuperar a anotação @Coluna
-            Coluna anotacao = f.getAnnotation(Coluna.class);
-            //Exibir os parametros da anotação
-            System.out.println(anotacao.nome() + " " + anotacao.tamanho()
-                    + " " + anotacao.obrigatorio());
-            System.out.println("passou aqui");
-
-        }
-        System.out.println(funcionario.mostrarInformacoes(funcionario));
-
+        System.out.println(dao.pesquisar(funcionario1));
 
     }
 }
